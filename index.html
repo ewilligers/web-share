@@ -224,6 +224,7 @@
             USVString title;
             USVString text;
             USVString url;
+            FileList files;
           };
         </pre>
         <p>
@@ -251,9 +252,16 @@
             A <a data-cite="!URL#valid-url-string">valid URL string</a>
             referring to a resource being shared.
           </dd>
+          <dt>
+            <dfn>files</dfn> member
+          </dt>
+          <dd>
+            A <a data-cite="!FILE-API#filelist-section">FileList</a>
+            referring to one or more files being shared.
+          </dd>
         </dl>
         <div class="note">
-          These members are <a data-cite=
+          The string members are <a data-cite=
           "!WEBIDL#idl-USVString"><code>USVString</code></a> (as opposed to
           <a data-cite="!WEBIDL#idl-DOMString"><code>DOMString</code></a>)
           because they are not allowed to contain invalid <a data-cite=
