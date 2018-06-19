@@ -95,6 +95,7 @@
         </p>
         <pre class="idl">
           partial interface Navigator {
+            [SecureContext] boolean canShare(optional ShareData data);
             [SecureContext] Promise&lt;void&gt; share(optional ShareData data);
           };
         </pre>
@@ -120,6 +121,24 @@
         </div>
         <section>
           <h4>
+            <dfn>canShare()</dfn> method
+          </h4>
+          <p>
+            When the <a>canShare()</a> method is called with argument
+            <var>data</var>, run the following steps:
+          </p>
+          <ol data-link-for="ShareData">
+            <li>If none of <var>data</var>'s members <a>title</a>, <a>text</a>,
+            <a>url</a> or <a>files</a> are present, return <code>false</code>.
+            </li>
+            <li>return <code>true</code>.
+            </li>
+          </ol>
+          <div class="note" data-link-for="ShareData">
+            <code>canShare()</code> MUST return <code>false</code> whenever
+            <code>share()</code> would reject with <a>TypeError</a>.
+          </div>
+          <h4>
             <dfn>share()</dfn> method
           </h4>
           <p>
@@ -131,7 +150,7 @@
             "!promises-guide#a-new-promise">a new promise</a>.
             </li>
             <li>If none of <var>data</var>'s members <a>title</a>, <a>text</a>,
-            or <a>url</a> are present, reject <var>p</var> with
+            <a>url</a> or <a>files</a> are present, reject <var>p</var> with
             <a>TypeError</a>, and abort these steps.
             </li>
             <li>If <var>data</var>'s <a>url</a> member is <a data-cite=
